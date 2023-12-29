@@ -11,7 +11,6 @@ function login (user) {
 
 function setLogged () {
   userState.isLogged = true
-  console.log(userState.isLogged)
 }
 
 function logout () {
