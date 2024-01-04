@@ -5,19 +5,17 @@
         Personal Admin Panel
       </p>
       <p class="text-2xl mt-5 text-gray-500">Simple way to keep track of your
-        <RouterLink :to="{name:'tickets'}" class="underline italic text-emerald-500 hover:text-emerald-600">tickets
-        </RouterLink>
+        <NuxtLink :to="{name:'tickets'}" class="underline italic text-emerald-500 hover:text-emerald-600">tickets
+        </NuxtLink>
       </p>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  meta: {
-    breadCrumb: [
-      { text: 'Home', disabled: false, href: 'home' }
-    ]
-  }
-};
+<script setup>
+definePageMeta({
+  breadCrumbs: [
+    { text: 'Home', href: '/' }
+  ]
+});
 </script>

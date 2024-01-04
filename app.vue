@@ -10,12 +10,12 @@
 <script setup>
 import {onMounted} from 'vue';
 import dbService from '~/services/dbService.js';
-import useTickets from '~/stores/tickets.js';
-import useUsers from '~/stores/user.js';
+import useTickets from '~/store/tickets.js';
+import useUsers from '~/store/user.js';
 
 const { setTickets } = useTickets();
 const { login, setLogged } = useUsers();
-const router = useRouter()
+const router = useRouter();
 
 onMounted(async () => {
   const isLogged = JSON.parse(localStorage.getItem('isLogged'));
@@ -25,8 +25,8 @@ onMounted(async () => {
     await login(user);
     const tickets = await dbService.getTickets();
     await setTickets(tickets);
-  }else{
-    await router.push('/login')
+  } else {
+    await router.push('/login');
   }
 });
 

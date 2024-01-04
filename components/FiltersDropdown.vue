@@ -11,7 +11,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import useTickets from '@/stores/tickets.js'
+import useTickets from '~/store/tickets.js'
 
 const { columns, hideColumnById, showColumn } = useTickets()
 

@@ -11,9 +11,9 @@
       </template>
       <template #item-author>
         <div class="player-wrapper">
-          <RouterLink to="/profile">
+          <NuxtLink to="/profile">
             {{ currentUser?.name + ' ' + currentUser?.lastName }}
-          </RouterLink>
+          </NuxtLink>
         </div>
       </template>
       <template #item-description="{description}">
@@ -27,9 +27,9 @@
         <p>{{ formatDate(date) }}</p>
       </template>
       <template #item-details="{ id }">
-        <RouterLink :to="`/tickets/${id}`" class="text-white bg-emerald-400 hover:bg-emerald-500 px-3 py-1 rounded">
+        <NuxtLink :to="`/tickets/${id}`" class="text-white bg-emerald-400 hover:bg-emerald-500 px-3 py-1 rounded">
           Подробнее
-        </RouterLink>
+        </NuxtLink>
       </template>
       <template #item-title="{title}">
         <p>{{ title }}</p>
@@ -49,9 +49,9 @@
 <script setup>
 import Vue3EasyDataTable from 'vue3-easy-data-table';
 import 'vue3-easy-data-table/dist/style.css';
-import {ref} from 'vue';
-import useTickets from '@/stores/tickets.js';
-import useUsers from '@/stores/user.js';
+import {onMounted, ref, useSSRContext} from 'vue';
+import useTickets from '~/store/tickets.js';
+import useUsers from '~/store/user.js';
 
 const { currentUser } = useUsers();
 const { tickets, columns } = useTickets();

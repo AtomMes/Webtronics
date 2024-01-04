@@ -3,9 +3,9 @@
     <div class="flex flex-col w-full max-w-xl border rounded-xl px-6 py-4">
       <p class="text-3xl text-center mb-2.5">{{ ticket.title }}</p>
       <div class="flex justify-between items-center mb-3 gap-10">
-        <RouterLink to="/profile" class="text-2xl font-semibold">
+        <NuxtLink to="/profile" class="text-2xl font-semibold">
           {{ currentUser.name + ' ' + currentUser.lastName }}
-        </RouterLink>
+        </NuxtLink>
         <p>{{ formatDate(ticket.date) }}</p>
       </div>
       <p class="text-[18px] text-left">{{ ticket.description }}</p>
@@ -16,8 +16,16 @@
 <script setup>
 import { useRoute } from 'vue-router'
 import { onMounted, ref } from 'vue'
-import useUsers from '@/stores/user.js'
+import useUsers from '~/store/user.js'
 import dbService from '@/services/dbService.js'
+
+definePageMeta({
+  breadCrumbs: [
+    { text: 'Home', href: '/' },
+    { text: 'Tickets', href: '/tickets' },
+    { text: 'Ticket', href: 'fullTicket' }
+  ]
+})
 
 const { currentUser } = useUsers()
 const route = useRoute()

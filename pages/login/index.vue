@@ -58,10 +58,10 @@
 </template>
 <script setup>
 import {onMounted, ref, watch} from 'vue';
-import useUsers from '@/stores/user.js';
+import useUsers from '~/store/user.js';
 import {useRouter} from 'vue-router';
 import dbService from '@/services/dbService.js';
-import useTickets from '@/stores/tickets.js';
+import useTickets from '~/store/tickets.js';
 
 const router = useRouter();
 const password = ref('');
@@ -95,4 +95,5 @@ const onLogin = async () => {
     showError.value = true;
   }
 };
+
 </script>
