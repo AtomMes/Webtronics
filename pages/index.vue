@@ -1,13 +1,11 @@
 <template>
-  <div class="flex flex-col">
-    <div class="mt-[7%]">
+  <div class="flex flex-col items-center">
+    <div class="flex flex-col items-center gap-8 mt-[20%]">
       <p class="text-6xl font-thin tracking-widest text-emerald-500">
         Personal Admin Panel
       </p>
-      <p class="text-2xl mt-5 text-gray-500">Simple way to keep track of your
-        <NuxtLink :to="{name:'tickets'}" class="underline italic text-emerald-500 hover:text-emerald-600">tickets
-        </NuxtLink>
-      </p>
+      <p class="text-2xl text-gray-500">Simple way to keep track of your tickets</p>
+      <NuxtLink to="/tickets" class="bg-emerald-500 hover:bg-emerald-600 transition text-white px-4 py-2 rounded-xl">Start Now</NuxtLink>
     </div>
   </div>
 </template>
