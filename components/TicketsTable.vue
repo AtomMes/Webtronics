@@ -11,11 +11,7 @@
         <p>{{ id }}</p>
       </template>
       <template #item-author="{authorId}">
-        <div>
-          <NuxtLink :to="`/profile/${authorId}`">
-            {{ currentUser?.name + ' ' + currentUser?.lastName }}
-          </NuxtLink>
-        </div>
+        <TicketAuthor :id="authorId" />
       </template>
       <template #item-description="{description}">
         <div class="flex">
@@ -58,10 +54,10 @@ import {formatRawDate} from '../composables/dateFormats.js';
 
 const { currentUser } = useUsers();
 const { tickets, columns } = useTickets();
+
 const showColumnsSettings = ref(false);
 
 const toggleFilter = () => {
   showColumnsSettings.value = !showColumnsSettings.value;
 };
-
 </script>
