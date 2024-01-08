@@ -33,7 +33,6 @@ defineProps(['showDropdown'])
 const clickListener = () => {
   if (count === 0) {
     count++
-    return
   } else {
     count = 0
     emit('toggleDropdown')

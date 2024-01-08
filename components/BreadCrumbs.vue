@@ -1,11 +1,13 @@
 <template>
   <div class="flex gap-3">
-    <NuxtLink v-for="(breadCrumb, i) in breadCrumbs" :key="i"
-              :to="breadCrumb.href" class="flex gap-3 last:font-bold">
-      {{ breadCrumb.text }}
+    <div v-for="(breadCrumb, i) in breadCrumbs" :key="i" class="flex gap-3 last:font-bold">
+      <NuxtLink
+        :to="breadCrumb.href">
+        {{ breadCrumb.text }}
+      </NuxtLink>
       <p v-if="i < breadCrumbs.length - 1">>
       </p>
-    </NuxtLink>
+    </div>
   </div>
 </template>
 

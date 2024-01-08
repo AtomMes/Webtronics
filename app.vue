@@ -1,7 +1,7 @@
 <template>
-  <div class="flex justify-center w-full">
-    <div class="w-full max-w-5xl px-4">
-      <NavBar />
+  <div class="flex flex-col items-center">
+    <NavBar />
+    <div class="flex items-center justify-center max-w-5xl w-full px-4">
       <router-view />
     </div>
   </div>

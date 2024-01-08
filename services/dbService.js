@@ -1,32 +1,29 @@
-import axios from 'axios';
+import useUsers from '~/store/user.js';
 
-const dbClient = axios.create({
-  baseURL: `https://658d20807c48dce947388cae.mockapi.io/`,
-  withCredentials: false,
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
-  }
-});
+const { currentUser } = useUsers();
 
 export default {
   login: async () => {
-    const user = await dbClient.get('user');
-    return user.data[0];
+    const { data } = await useFetch('https://658d20807c48dce947388cae.mockapi.io/user');
+    return data.value[0];
+  },
+
+  getUserById: async (id) => {
+    const { data } = await useFetch('https://658d20807c48dce947388cae.mockapi.io/user/' + id);
+    return data.value;
   },
 
   updateUser: async (newData) => {
-    return await dbClient.put('user/1', newData);
+    const data = await $fetch('https://658d20807c48dce947388cae.mockapi.io/user/' + currentUser.value.id, {
+      method: 'PUT',
+      body: newData
+    });
+    return data;
   },
 
   getTickets: async () => {
-    const tickets = await dbClient.get('tickets');
-    return tickets.data;
+    const { data } = await useFetch('https://658d20807c48dce947388cae.mockapi.io/tickets/');
+    return data.value;
   },
-
-  getTicketById: async (id) => {
-    const res = await dbClient.get('tickets?id=' + id);
-    return res.data[0];
-  }
 };
 

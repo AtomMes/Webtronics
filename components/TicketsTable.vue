@@ -3,15 +3,16 @@
     <Vue3EasyDataTable
       v-if="tickets?.length"
       buttons-pagination
+      table-class-name="tickets-table"
       :headers="columns"
       :items="tickets"
     >
       <template #item-id="{id}">
         <p>{{ id }}</p>
       </template>
-      <template #item-author>
-        <div class="player-wrapper">
-          <NuxtLink to="/profile">
+      <template #item-author="{authorId}">
+        <div>
+          <NuxtLink :to="`/profile/${authorId}`">
             {{ currentUser?.name + ' ' + currentUser?.lastName }}
           </NuxtLink>
         </div>
@@ -24,7 +25,7 @@
         </div>
       </template>
       <template #item-date="{ date }">
-        <p>{{ formatDate(date) }}</p>
+        <p>{{ formatRawDate(date) }}</p>
       </template>
       <template #item-details="{ id }">
         <NuxtLink :to="`/tickets/${id}`" class="text-white bg-emerald-400 hover:bg-emerald-500 px-3 py-1 rounded">
@@ -37,11 +38,12 @@
     </Vue3EasyDataTable>
     <button
       v-if="tickets?.length"
-      @click="showFilter = true"
-      class="absolute top-1 right-1 z-[9999] flex items-center justify-center h-7 rounded px-2 leading-none text-sm font-light bg-emerald-400 hover:bg-emerald-500 text-white cursor-pointer">
-      <div class="relative pointer">Filter
-        <FiltersDropdown v-if="showFilter" :show-filter="showFilter" @close-filter="toggleFilter" />
-      </div>
+      @click="showColumnsSettings = true"
+      class="absolute h-7 w-7 top-1 right-1 z-[9999] flex items-center justify-center rounded bg-emerald-400 hover:bg-emerald-500">
+      <span class="relative pointer">
+        <img src="/assets/images/settings.png" alt="Settings" />
+        <FiltersDropdown v-if="showColumnsSettings" :show-filter="showColumnsSettings" @close-filter="toggleFilter" />
+      </span>
     </button>
   </div>
 </template>
@@ -49,22 +51,17 @@
 <script setup>
 import Vue3EasyDataTable from 'vue3-easy-data-table';
 import 'vue3-easy-data-table/dist/style.css';
-import {onMounted, ref, useSSRContext} from 'vue';
+import {ref} from 'vue';
 import useTickets from '~/store/tickets.js';
 import useUsers from '~/store/user.js';
+import {formatRawDate} from '../composables/dateFormats.js';
 
 const { currentUser } = useUsers();
 const { tickets, columns } = useTickets();
-const showFilter = ref(false);
+const showColumnsSettings = ref(false);
 
-const formatDate = (rawDate) => {
-  const year = String(rawDate).slice(0, 4);
-  const month = String(rawDate).slice(4, 6);
-  const day = String(rawDate).slice(6, 8);
-  return `${day}/${month}/${year}`;
-};
 const toggleFilter = () => {
-  showFilter.value = !showFilter.value;
+  showColumnsSettings.value = !showColumnsSettings.value;
 };
 
 </script>

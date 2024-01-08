@@ -2,7 +2,7 @@
   <div
     class="shadow-2xl rounded-xl w-full px-8 py-6 max-w-[450px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
   >
-    <form @submit.prevent="onLogin" class="flex flex-col justify-center gap-4 w-full mb-1 mt-2">
+    <form @submit.prevent="handleLogin" class="flex flex-col justify-center gap-4 w-full mb-1 mt-2">
       <div>
         <p class="text-[24px] text-center font-bold mb-1">Welcome</p>
         <p class="text-[18px] text-center text-gray-400 mb-5">
@@ -15,7 +15,6 @@
           <input
             v-model="username"
             class="border w-full rounded-[6px] p-2"
-            placeholder="username"
           />
         </div>
       </div>
@@ -39,7 +38,6 @@
           <input
             v-model="password"
             class="border w-full rounded-[6px] p-2"
-            placeholder="password"
             :type="visiblePassword?'text':'password'"
           />
         </div>
@@ -82,7 +80,7 @@ onMounted(async () => {
   }
 });
 
-const onLogin = async () => {
+const handleLogin = async () => {
   if (username.value === 'admin' && password.value === 'admin') {
     localStorage.setItem('isLogged', JSON.stringify(true));
     await setLogged();
