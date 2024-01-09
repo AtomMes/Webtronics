@@ -1,5 +1,3 @@
-import dbService from '~/services/dbService.js';
-
 export const formatRawDate = (rawDate) => {
   const year = String(rawDate).slice(0, 4);
   const month = String(rawDate).slice(4, 6);

@@ -1,11 +1,11 @@
 <template>
-  <div v-if="isLogged && currentUser" class="w-full flex justify-center shadow-xl">
-    <div class="flex justify-between w-full max-w-5xl p-3">
+  <div class="w-full flex h-12 justify-center shadow-xl">
+    <div v-if="isLogged && currentUser" class="flex justify-between w-full max-w-5xl p-3">
       <BreadCrumbs />
       <div class="flex gap-3">
-        <NuxtLink class="tracking-widest font-semibold" :to="`/profile/${currentUser.id}`">PROFILE</NuxtLink>
+        <NuxtLink class="tracking-widest font-semibold" :to="`/profile/${currentUser.id}`">Профиль</NuxtLink>
         |
-        <NuxtLink class="tracking-widest font-semibold" :to="{ name: 'tickets' }">TICKETS</NuxtLink>
+        <NuxtLink class="tracking-widest font-semibold" :to="{ name: 'tickets' }">Тикеты</NuxtLink>
       </div>
     </div>
   </div>

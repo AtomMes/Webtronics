@@ -29,14 +29,14 @@ const { getTicketById } = useTickets();
 
 onMounted(async () => {
   ticket.value = await getTicketById(route.params.id);
-  lauthor.value = await dbService.getUserById(ticket.value.authorId);
+  author.value = await dbService.getUserById(ticket.value.authorId);
 });
 
 definePageMeta({
   breadCrumbs: [
-    { text: 'Home', href: '/' },
-    { text: 'Tickets', href: '/tickets' },
-    { text: 'Ticket' }
+    { text: 'Главная', href: '/' },
+    { text: 'Тикеты', href: '/tickets' },
+    { text: 'Тикет' }
   ]
 });
 </script>

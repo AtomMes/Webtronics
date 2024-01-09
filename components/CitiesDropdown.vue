@@ -16,37 +16,37 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import {ref} from 'vue';
 
 const cities = ref([
   'Москва', 'Санкт-Петербург', 'Новосибирск', 'Екатеринбург',
   'Казань', 'Челябинск', 'Омск', 'Самара', 'Ростов-на-Дону',
   'Уфа', 'Красноярск', 'Пермь', 'Воронеж', 'Волгоград',
   'Краснодар', 'Саратов', 'Тюмень', 'Тольятти', 'Ижевск'
-])
-const clickBox = ref(null)
-let count = 0
+]);
+const clickBox = ref(null);
+let count = 0;
 
-const emit = defineEmits(['toggleDropdown', 'choseCity'])
-defineProps(['showDropdown'])
+const emit = defineEmits(['toggleDropdown', 'choseCity']);
+defineProps(['showDropdown']);
 
 const clickListener = () => {
   if (count === 0) {
-    count++
+    count++;
   } else {
-    count = 0
-    emit('toggleDropdown')
-    removeClickListener()
+    count = 0;
+    emit('toggleDropdown');
+    removeClickListener();
   }
-}
+};
 
-window.addEventListener('click', clickListener)
+window.addEventListener('click', clickListener);
 const removeClickListener = () => {
-  window.removeEventListener('click', clickListener)
-}
+  window.removeEventListener('click', clickListener);
+};
 
 const handleCityClick = (city) => {
-  emit('toggleDropdown')
-  emit('choseCity', city)
-}
+  emit('toggleDropdown');
+  emit('choseCity', city);
+};
 </script>

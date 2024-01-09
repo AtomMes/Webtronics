@@ -4,14 +4,14 @@
   >
     <form @submit.prevent="handleLogin" class="flex flex-col justify-center gap-4 w-full mb-1 mt-2">
       <div>
-        <p class="text-[24px] text-center font-bold mb-1">Welcome</p>
+        <p class="text-[24px] text-center font-bold mb-1">Добро пожаловать</p>
         <p class="text-[18px] text-center text-gray-400 mb-5">
-          Enter your credentials to log in
+          Введите свои учетные данные для входа
         </p>
       </div>
       <div>
         <div class="flex flex-col gap-0.5">
-          <label class="font-semibold">Username</label>
+          <label class="font-semibold">Логин</label>
           <input
             v-model="username"
             class="border w-full rounded-[6px] p-2"
@@ -34,26 +34,27 @@
           class="cursor-pointer w-[18px] mt-[6px] absolute right-2 top-[33px]"
         />
         <div class="flex flex-col gap-0.5">
-          <label class="font-semibold">Password</label>
+          <label class="font-semibold">Пароль</label>
           <input
             v-model="password"
             class="border w-full rounded-[6px] p-2"
             :type="visiblePassword?'text':'password'"
           />
         </div>
-        <label v-if="showError" class="font-semibold text-red-500">incorrect username or password</label>
+        <label v-if="showError" class="font-semibold text-red-500">Неверное имя пользователя или пароль</label>
       </div>
       <div class="flex justify-end w-full relative mt-4">
         <button
           class="border rounded-[6px] py-1 pb-2 bg-emerald-400 hover:bg-emerald-500 transition text-white text-center text-[18px] w-full font-semibold"
           type="submit"
         >
-          Log in
+          Войти
         </button>
       </div>
     </form>
   </div>
 </template>
+
 <script setup>
 import {onMounted, ref, watch} from 'vue';
 import useUsers from '~/store/user.js';

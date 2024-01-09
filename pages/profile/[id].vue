@@ -63,22 +63,40 @@
       </div>
       <div class="flex gap-2 self-end" v-if="user.id === currentUser.id">
         <template v-if="editProfile">
-          <button class="rounded-xl px-4 py-1.5 w-20 bg-emerald-500 hover:bg-emerald-600 text-white transition"
-                  @click="updateProfile">Save
+          <button class="rounded-xl py-1.5 w-24 bg-emerald-500 hover:bg-emerald-600 text-white transition"
+                  @click="updateProfile">Сохранить
           </button>
-          <button class="rounded-xl px-4 py-1.5 w-20 bg-gray-400 text-gray-100" @click="editProfile = false">Cancel
+          <button class="rounded-xl py-1.5 w-24 bg-gray-400 text-gray-100" @click="editProfile = false">Отмена
           </button>
         </template>
         <template v-else>
-          <button class="rounded-xl px-4 py-1.5 w-20 bg-emerald-500 hover:bg-emerald-600 text-white transition"
-                  @click="editProfile = true">Edit
+          <button class="rounded-xl py-1.5 w-24 bg-emerald-500 hover:bg-emerald-600 text-white transition"
+                  @click="editProfile = true">Изменить
           </button>
-          <button class="rounded-xl px-4 py-1.5 w-20 bg-red-500 hover:bg-red-600 text-white transition"
-                  @click="handleLogout">Logout
+          <button class="rounded-xl py-1.5 w-24 bg-red-500 hover:bg-red-600 text-white transition"
+                  @click="handleLogout">Выйти
           </button>
         </template>
       </div>
     </div>
+  </div>
+  <div
+    v-else-if="notFound"
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 w-full -translate-y-1/2 flex flex-col gap-4 items-center justify-center"
+  >
+    <p class="text-[50px] font-bold text-center">Ошибка</p>
+    <div
+      class="h-60 w-60 flex items-center justify-center rounded-full bg-red-600"
+    >
+      <p class="text-[110px] text-white">404</p>
+    </div>
+    <p>
+      Пользователь, которого вы ищете, не существует.
+      <NuxtLink to="/" class="text-emerald-500 underline font-semibold italic"
+      >Вернутся
+      </NuxtLink
+      >
+    </p>
   </div>
 </template>
 
@@ -97,6 +115,7 @@ const route = useRoute();
 const showCitiesDropdown = ref(false);
 const editProfile = ref(false);
 const user = ref(null);
+const notFound = ref(false);
 
 const updatedProfile = reactive({
   id: null,
@@ -108,16 +127,20 @@ const updatedProfile = reactive({
 
 definePageMeta({
   breadCrumbs: [
-    { text: 'Home', href: '/' },
-    { text: 'Profile', href: '/profile/1' }
+    { text: 'Главная', href: '/' },
+    { text: 'Профиль', href: '/profile/1' }
   ]
 });
 
 watchEffect(async () => {
+  notFound.value = false;
   if (currentUser.id === route.params.id) {
     user.value = currentUser.value;
   } else {
     user.value = await dbService.getUserById(route.params.id);
+    if (!user.value) {
+      notFound.value = true;
+    }
   }
 });
 

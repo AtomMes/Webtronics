@@ -14,15 +14,14 @@ export default {
   },
 
   updateUser: async (newData) => {
-    const data = await $fetch('https://658d20807c48dce947388cae.mockapi.io/user/' + currentUser.value.id, {
+    return await $fetch('https://658d20807c48dce947388cae.mockapi.io/user/' + currentUser.value.id, {
       method: 'PUT',
       body: newData
     });
-    return data;
   },
 
   getTickets: async () => {
-    const { data } = await useFetch('https://658d20807c48dce947388cae.mockapi.io/tickets/');
+    const { data } = await useFetch('https://658d20807c48dce947388cae.mockapi.io/tickets');
     return data.value;
   },
 };

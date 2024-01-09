@@ -4,6 +4,7 @@
       v-if="tickets?.length"
       buttons-pagination
       table-class-name="tickets-table"
+      hide-footer
       :headers="columns"
       :items="tickets"
     >
@@ -17,7 +18,8 @@
         <div class="flex">
           <p class="overflow-hidden whitespace-nowrap w-14">
             {{ description }}
-          </p>...
+          </p>
+          <span>...</span>
         </div>
       </template>
       <template #item-date="{ date }">
@@ -34,8 +36,8 @@
     </Vue3EasyDataTable>
     <button
       v-if="tickets?.length"
-      @click="showColumnsSettings = true"
-      class="absolute h-7 w-7 top-1 right-1 z-[9999] flex items-center justify-center rounded bg-emerald-400 hover:bg-emerald-500">
+      class="absolute h-7 w-7 top-1 right-1 z-[9999] flex items-center justify-center rounded bg-emerald-400 hover:bg-emerald-500"
+      @click="showColumnsSettings = true">
       <span class="relative pointer">
         <img src="/assets/images/settings.png" alt="Settings" />
         <FiltersDropdown v-if="showColumnsSettings" :show-filter="showColumnsSettings" @close-filter="toggleFilter" />
@@ -54,7 +56,6 @@ import {formatRawDate} from '../composables/dateFormats.js';
 
 const { currentUser } = useUsers();
 const { tickets, columns } = useTickets();
-
 const showColumnsSettings = ref(false);
 
 const toggleFilter = () => {

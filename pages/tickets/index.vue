@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col gap-2 w-full mt-[5%]">
     <p class="text-3xl font-semibold py-4">
-      Tickets
+      Тикеты
     </p>
     <TicketsTable />
   </div>
@@ -10,8 +10,8 @@
 <script setup>
 definePageMeta({
   breadCrumbs: [
-    { text: 'Home', href: '/' },
-    { text: 'Tickets', href: '/tickets' }
+    { text: 'Главная', href: '/' },
+    { text: 'Тикеты', href: '/tickets' }
   ]
 });
 </script>
