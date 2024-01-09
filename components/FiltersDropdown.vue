@@ -13,20 +13,18 @@
 import {ref} from 'vue';
 import useTickets from '~/store/tickets.js';
 
+defineProps(['showFilter']);
+const emit = defineEmits(['closeFilter']);
 const { columns, hideColumnById, showColumn } = useTickets();
+const clickBox = ref(null);
 
+let count = 0;
 let localColumns = [
   { id: '1', text: 'Id', value: 'id', sortable: true },
   { id: '3', text: 'Заголовок', value: 'title' },
   { id: '4', text: 'Описание', value: 'description' },
   { id: '5', text: 'Дата создания', value: 'date', sortable: true }
 ];
-
-const emit = defineEmits(['closeFilter']);
-defineProps(['showFilter']);
-
-const clickBox = ref(null);
-let count = 0;
 
 const clickListener = (e) => {
   if (count === 0) {

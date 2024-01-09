@@ -82,7 +82,7 @@
   </div>
   <div
     v-else-if="notFound"
-    class="absolute top-1/2 left-1/2 -translate-x-1/2 w-full -translate-y-1/2 flex flex-col gap-4 items-center justify-center"
+    class="mt-[10%] flex flex-col gap-4 items-center justify-center"
   >
     <p class="text-[50px] font-bold text-center">Ошибка</p>
     <div
