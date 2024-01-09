@@ -1,8 +1,5 @@
 <template>
-  <div class="flex flex-col gap-2 w-full mt-[5%]">
-    <p class="text-3xl font-semibold py-4">
-      Тикеты
-    </p>
+  <div class="w-full mt-[5%]">
     <TicketsTable />
   </div>
 </template>

@@ -1,5 +1,8 @@
 <template>
-  <div class="relative">
+  <div v-if="tickets?.length" class="flex flex-col gap-2 relative">
+    <p class="text-3xl font-semibold py-4">
+      Тикеты
+    </p>
     <Vue3EasyDataTable
       v-if="tickets?.length"
       buttons-pagination
