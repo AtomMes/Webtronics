@@ -11,6 +11,24 @@
       <p class="text-[18px] text-left">{{ ticket.description }}</p>
     </div>
   </div>
+  <div
+    v-else-if="notFound"
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 w-full -translate-y-1/2 flex flex-col gap-4 items-center justify-center"
+  >
+    <p class="text-[50px] font-bold text-center">Ошибка</p>
+    <div
+      class="h-60 w-60 flex items-center justify-center rounded-full bg-red-600"
+    >
+      <p class="text-[110px] text-white">404</p>
+    </div>
+    <p>
+      Тикет, который вы ищете, не существует.
+      <NuxtLink to="/" class="text-emerald-500 underline font-semibold italic"
+      >Вернутся
+      </NuxtLink
+      >
+    </p>
+  </div>
 </template>
 
 <script setup>
@@ -22,13 +40,16 @@ import {formatRawDate} from '~/composables/dateFormats.js';
 
 const route = useRoute();
 const ticket = ref(null);
+const notFound = ref(false);
 const author = ref(null);
 
 const { getTicketById } = useTickets();
 
-
 onMounted(async () => {
   ticket.value = await getTicketById(route.params.id);
+  if (!ticket.value) {
+    return notFound.value = true;
+  }
   author.value = await dbService.getUserById(ticket.value.authorId);
 });
 
